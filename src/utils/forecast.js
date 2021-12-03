@@ -10,10 +10,14 @@ const forecast = (lat, lng, callback) => {
       const desc = response.body.current.weather_descriptions[0];
       const temperature = response.body.current.temperature;
       const feelslike = response.body.current.feelslike;
+      const humidity = response.body.current.humidity;
+      const uv_index = response.body.current.uv_index;
       callback(undefined, {
         desc,
         temperature,
         feelslike,
+        humidity,
+        uv_index
       });
     }
   });

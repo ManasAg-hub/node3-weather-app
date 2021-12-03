@@ -56,19 +56,23 @@ app.get("/weather", (req, res) => {
         error,
       });
     }
-    forecast(latitude, longitude, (error, { desc, temperature, feelslike }) => {
-      if (error) {
-        return res.send({
-          error,
+    forecast(
+      latitude,
+      longitude,
+      (error, { desc, temperature, feelslike, humidity, uv_index }) => {
+        if (error) {
+          return res.send({
+            error,
+          });
+        }
+
+        res.send({
+          forecast: `${desc}. It is currently ${temperature} degrees out. It feels like ${feelslike} degree. Humidity is ${humidity} and uv index is ${uv_index}`,
+          location,
+          address,
         });
       }
-
-      res.send({
-        forecast: `${desc}. It is currently ${temperature} degrees out. It feels like ${feelslike} degree.`,
-        location,
-        address,
-      });
-    });
+    );
   });
 });
 
